@@ -22,13 +22,13 @@ Highlights:
 */
 
 -- =============================================================================
--- Create Report: gold.report_customers
+-- Create Report: report_customers
 -- =============================================================================
-IF OBJECT_ID('gold.report_customers', 'V') IS NOT NULL
-    DROP VIEW gold.report_customers;
+IF OBJECT_ID('report_customers', 'V') IS NOT NULL
+    DROP VIEW report_customers;
 GO
 
-CREATE VIEW gold.report_customers AS
+CREATE VIEW report_customers AS
 
 WITH base_query AS(
 /*---------------------------------------------------------------------------
@@ -44,8 +44,8 @@ c.customer_key,
 c.customer_number,
 CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
 DATEDIFF(year, c.birthdate, GETDATE()) age
-FROM gold.fact_sales f
-LEFT JOIN gold.dim_customers c
+FROM fact_sales f
+LEFT JOIN dim_customers c
 ON c.customer_key = f.customer_key
 WHERE order_date IS NOT NULL)
 
