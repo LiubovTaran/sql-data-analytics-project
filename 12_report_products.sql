@@ -21,13 +21,13 @@ Highlights:
 ===============================================================================
 */
 -- =============================================================================
--- Create Report: gold.report_products
+-- Create Report: report_products
 -- =============================================================================
-IF OBJECT_ID('gold.report_products', 'V') IS NOT NULL
-    DROP VIEW gold.report_products;
+IF OBJECT_ID('report_products', 'V') IS NOT NULL
+    DROP VIEW report_products;
 GO
 
-CREATE VIEW gold.report_products AS
+CREATE VIEW report_products AS
 
 WITH base_query AS (
 /*---------------------------------------------------------------------------
@@ -44,8 +44,8 @@ WITH base_query AS (
         p.category,
         p.subcategory,
         p.cost
-    FROM gold.fact_sales f
-    LEFT JOIN gold.dim_products p
+    FROM fact_sales f
+    LEFT JOIN dim_products p
         ON f.product_key = p.product_key
     WHERE order_date IS NOT NULL  -- only consider valid sales dates
 ),
